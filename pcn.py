@@ -17,6 +17,7 @@ if out not equal to target
     add this delta matrix to the weights matrix
 '''
 
+
 class pcn:
 
     # sets perceptron parameters and initializes weights matrix
@@ -73,6 +74,17 @@ class pcn:
             val = self.interpret(self.one_hot(y))
             cnf[val][t] += 1
         return cnf
+
+
+    def accuracy(self, confusion_matrix):
+        total = 0;
+        correct = 0
+        for i in range(self.num_out):
+            for j in range(self.num_out):
+                total += confusion_matrix[i][j]
+                if i == j:
+                    correct += confusion_matrix[i][j]
+        return correct / total
 
 
     # returns unthresholded output vector
