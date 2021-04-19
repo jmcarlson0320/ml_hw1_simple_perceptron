@@ -37,7 +37,7 @@ class pcn:
         scale = 1.0 / 255.0
         input_data = input_data * scale
 
-        # add bias node to begining of each data point
+        # add bias node to beginning of each data point
         bias = np.ones((dim[0], 1))
         input_data = np.concatenate((bias, input_data), axis=1)
         return input_data
@@ -59,12 +59,12 @@ class pcn:
                     x = np.array([data])
                     d_w = np.dot(error, x)
                     d_w = d_w * learning_rate
-                    self.weights = self.weights + d_w
-                print('\r' + str(count), end = '')
+                    self.weights += d_w
+                print('\r# input data: ' + str(count), end = '')
                 count += 1
             # calculate accuracy???
             # do other per-epoch things
-        print('\n')
+        print('')
 
 
     def confusion_matrix(self, input_data, target_labels):
